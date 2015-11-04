@@ -40,10 +40,18 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
-    <Compile Include="Entities\BaseResource.cs" />
+    <Compile Include="Entities\BaseTerrain.cs" />
+    <Compile Include="Entities\Terrain\Dirt.cs" />
+    <Compile Include="Entities\Terrain\Sand.cs" />
+    <Compile Include="Entities\Terrain\Water.cs" />
+    <Compile Include="Entities\Terrain\Rock.cs" />
+    <Compile Include="Interfaces\IFood.cs" />
+    <Compile Include="Entities\LifeForms\Animal.cs" />
+    <Compile Include="Entities\LifeForms\Human.cs" />
     <Compile Include="Entities\LifeForms\LifeForm.cs" />
+    <Compile Include="Entities\LifeForms\Eukaryotes.cs" />
     <Compile Include="Entities\LifeForms\Plants.cs" />
-    <Compile Include="Entities\Resources\Currency.cs" />
+    <Compile Include="Entities\LifeForms\Tree.cs" />
     <Compile Include="Entities\Structures\Bridge.cs" />
     <Compile Include="Entities\Structures\Building.cs" />
     <Compile Include="Entities\Structures\Footpath.cs" />
@@ -72,6 +80,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\kootenay.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Graphics\UserInterface\" />
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">
