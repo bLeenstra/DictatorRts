@@ -18,7 +18,11 @@ namespace DictatorRTS.Entities
             _isAlive = true;
         }
 
-        public decimal MaxHealth => _maxHealth;
+        public decimal MaxHealth
+	    {
+		    get { return _maxHealth;}
+	    }
+	
 
         public decimal CurrentHealth {
             get { return _currentHealth; }
