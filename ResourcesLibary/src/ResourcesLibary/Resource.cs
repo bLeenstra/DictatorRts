@@ -9,9 +9,12 @@ namespace ResourcesLibary
     // To enable this option, right-click on the project and select the Properties menu item. In the Build tab select "Produce outputs on build".
     public class Resource
     {
-        public Resource()
+        private decimal _amount;
+        public Resource(decimal amount)
         {
-
+            this._amount = amount;
         }
+
+        public decimal Amount { get; set; }
     }
 }
