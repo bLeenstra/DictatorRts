@@ -39,6 +39,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Graphics\GraphicHandler.cs" />
+    <Compile Include="Path\PathHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
