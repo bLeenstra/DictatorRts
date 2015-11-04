@@ -7,5 +7,13 @@ namespace DictatorRTS.Entities
 {
     public class BaseTerrain
     {
+        private float _depth;
+
+        public float Depth
+        {
+            get { return _depth; }
+            set { _depth = value; }
+        }
+        
     }
 }
