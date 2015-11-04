@@ -40,8 +40,10 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\BaseResource.cs" />
     <Compile Include="Entities\LifeForms\LifeForm.cs" />
     <Compile Include="Entities\LifeForms\Plants.cs" />
+    <Compile Include="Entities\Resources\Currency.cs" />
     <Compile Include="Entities\Structures\Bridge.cs" />
     <Compile Include="Entities\Structures\Building.cs" />
     <Compile Include="Entities\Structures\Footpath.cs" />
