@@ -46,6 +46,7 @@
     <Compile Include="Entities\BaseEffect.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\BaseTerrain.cs" />
+    <Compile Include="Entities\Effectables %28Not sure how to handle this%29\Alcohol.cs" />
     <Compile Include="Entities\Effectables %28Not sure how to handle this%29\Beef.cs" />
     <Compile Include="Entities\Effectables %28Not sure how to handle this%29\Carrot.cs" />
     <Compile Include="Entities\Effectables %28Not sure how to handle this%29\Egg.cs" />
@@ -53,6 +54,11 @@
     <Compile Include="Entities\Effectables %28Not sure how to handle this%29\FizzyDrink.cs" />
     <Compile Include="Entities\Effectables %28Not sure how to handle this%29\RoastChicken.cs" />
     <Compile Include="Entities\Effectables %28Not sure how to handle this%29\Water.cs" />
+    <Compile Include="Entities\LifeForms\Cat.cs" />
+    <Compile Include="Entities\LifeForms\Chicken.cs" />
+    <Compile Include="Entities\LifeForms\Cow.cs" />
+    <Compile Include="Entities\LifeForms\Dog.cs" />
+    <Compile Include="Entities\LifeForms\Insects.cs" />
     <Compile Include="Entities\Misc\RandomGenerator.cs" />
     <Compile Include="Entities\Misc\StatisticalGenerator.cs" />
     <Compile Include="Entities\Structures\AsphaltRoad.cs" />
