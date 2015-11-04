@@ -16,6 +16,19 @@ namespace DictatorRTS.Graphics
         Texture2D ActiveTexture;
         SpriteFont Font;
 
+        public enum OriginLocation
+        {
+            Middle,
+            TopLeft,
+            TopRight,
+            BottomLeft,
+            BottomRight,
+            MiddleTop,
+            MiddleBottom,
+            MiddleLeft,
+            MiddleRight
+        }
+
         // we are going to handle scale
 
         public float xScale = 1.0f;
@@ -97,6 +110,46 @@ namespace DictatorRTS.Graphics
             this.spriteBatch.Draw(source, new Rectangle((int)(x * xScale), (int)(y * yscale), (int)(width * xScale), (int)(height * yscale)), Color.White);
         }
 
+        public void DrawActiveTexture(int x, int y, int width, int height, float rotation, OriginLocation Origin = OriginLocation.Middle)
+        {
+            DrawTexture(this.ActiveTexture, x, y, width, height, rotation, Origin);
+        }
+        public void DrawTexture(Texture2D source, int x, int y, int width, int height, float rotation, OriginLocation Origin = OriginLocation.Middle)
+        {
+            switch (Origin)
+            {
+                case OriginLocation.Middle:
+                    this.spriteBatch.Draw(source, new Vector2(x, y), new Rectangle(0, 0, width, height), Color.White, rotation, new Vector2(width / 2, height / 2), new Vector2(xScale, yscale), SpriteEffects.None, 1.0f);
+                    break;
+                case OriginLocation.TopLeft:
+                    this.spriteBatch.Draw(source, new Vector2(x, y), new Rectangle(0, 0, width, height), Color.White, rotation, Vector2.Zero, new Vector2(xScale, yscale), SpriteEffects.None, 1.0f);
+                    break;
+                case OriginLocation.TopRight:
+                    this.spriteBatch.Draw(source, new Vector2(x, y), new Rectangle(0, 0, width, height), Color.White, rotation, new Vector2(width, 0), new Vector2(xScale, yscale), SpriteEffects.None, 1.0f);
+                    break;
+                case OriginLocation.BottomLeft:
+                    this.spriteBatch.Draw(source, new Vector2(x, y), new Rectangle(0, 0, width, height), Color.White, rotation, new Vector2(0, height), new Vector2(xScale, yscale), SpriteEffects.None, 1.0f);
+                    break;
+                case OriginLocation.BottomRight:
+                    this.spriteBatch.Draw(source, new Vector2(x, y), new Rectangle(0, 0, width, height), Color.White, rotation, new Vector2(width, height), new Vector2(xScale, yscale), SpriteEffects.None, 1.0f);
+                    break;
+                case OriginLocation.MiddleTop:
+                    this.spriteBatch.Draw(source, new Vector2(x, y), new Rectangle(0, 0, width, height), Color.White, rotation, new Vector2(width / 2, 0), new Vector2(xScale, yscale), SpriteEffects.None, 1.0f);
+                    break;
+                case OriginLocation.MiddleBottom:
+                    this.spriteBatch.Draw(source, new Vector2(x, y), new Rectangle(0, 0, width, height), Color.White, rotation, new Vector2(width / 2, height), new Vector2(xScale, yscale), SpriteEffects.None, 1.0f);
+                    break;
+                case OriginLocation.MiddleLeft:
+                    this.spriteBatch.Draw(source, new Vector2(x, y), new Rectangle(0, 0, width, height), Color.White, rotation, new Vector2(0, height / 2), new Vector2(xScale, yscale), SpriteEffects.None, 1.0f);
+                    break;
+                case OriginLocation.MiddleRight:
+                    this.spriteBatch.Draw(source, new Vector2(x, y), new Rectangle(0, 0, width, height), Color.White, rotation, new Vector2(width, height / 2), new Vector2(xScale, yscale), SpriteEffects.None, 1.0f);
+                    break;
+                default:
+                    break;
+            }            
+        }
+
         public void Begin()
         {
             this.spriteBatch.Begin();
@@ -105,6 +158,11 @@ namespace DictatorRTS.Graphics
         public void End()
         {
             this.spriteBatch.End();
+        }
+
+        public void DrawString(string source, int x, int y, Color color)
+        {
+            this.spriteBatch.DrawString(this.Font, source, new Vector2((int)(x * xScale), (int)(y * yscale)), color, 0, Vector2.Zero, new Vector2(xScale, yscale), SpriteEffects.None, 0.0f);
         }
     }
 }
