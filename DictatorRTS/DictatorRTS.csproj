@@ -40,6 +40,11 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Structures\Bridge.cs" />
+    <Compile Include="Entities\Structures\Building.cs" />
+    <Compile Include="Entities\Structures\Footpath.cs" />
+    <Compile Include="Entities\Structures\Road.cs" />
+    <Compile Include="Entities\Structures\Structure.cs" />
     <Compile Include="Graphics\GraphicHandler.cs" />
     <Compile Include="Path\PathHandler.cs" />
     <Compile Include="Program.cs" />
