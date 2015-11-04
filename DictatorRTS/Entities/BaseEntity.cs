@@ -10,5 +10,21 @@ namespace DictatorRTS.Entities
     /// </summary>
     public class BaseEntity
     {
+        private readonly decimal _maxHealth;
+        private bool _isAlive;
+        private decimal _currentHealth;
+        public BaseEntity(decimal health) {
+            _maxHealth = _currentHealth = health;
+            _isAlive = true;
+        }
+
+        public decimal MaxHealth => _maxHealth;
+
+        public decimal CurrentHealth {
+            get { return _currentHealth; }
+            set { _currentHealth = value; }
+        }
+
+
     }
 }

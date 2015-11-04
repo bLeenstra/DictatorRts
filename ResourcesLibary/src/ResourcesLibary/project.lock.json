@@ -29,6 +29,7 @@
           "lib/dotnet/Microsoft.CSharp.dll": {}
         }
       },
+      "MonoGame.Framework.WindowsGL/3.4.0.459": {},
       "System.Collections/4.0.10-beta-23019": {
         "dependencies": {
           "System.Runtime": "4.0.0-beta-23019"
@@ -233,6 +234,18 @@
         "ref/net45/_._",
         "ref/netcore50/Microsoft.CSharp.dll",
         "ref/win8/_._"
+      ]
+    },
+    "MonoGame.Framework.WindowsGL/3.4.0.459": {
+      "sha512": "Q3Wu9qa4rxQP2UAa7LN0qHg14vTTqVDoNJ77BVnrapFSXgDP8sheJiOJ406vfmVVlN8wrFbrvbRbkYOx+Bqs4w==",
+      "files": [
+        "MonoGame.Framework.WindowsGL.3.4.0.459.nupkg",
+        "MonoGame.Framework.WindowsGL.3.4.0.459.nupkg.sha512",
+        "MonoGame.Framework.WindowsGL.nuspec",
+        "readme.txt",
+        "lib/net40/MonoGame.Framework.dll",
+        "lib/net40/MonoGame.Framework.xml",
+        "lib/net40/OpenTK.dll"
       ]
     },
     "System.Collections/4.0.10-beta-23019": {
@@ -537,7 +550,8 @@
       "System.Linq >= 4.0.0-beta-23019",
       "System.Threading >= 4.0.10-beta-23019",
       "System.Runtime >= 4.0.10-beta-23019",
-      "Microsoft.CSharp >= 4.0.0-beta-23019"
+      "Microsoft.CSharp >= 4.0.0-beta-23019",
+      "MonoGame.Framework.WindowsGL >= 3.4.0.459"
     ],
     ".NETPlatform,Version=v5.0": []
   }
