@@ -7,5 +7,6 @@ namespace DictatorRTS.Entities.Structures
 {
     public class Structure : BaseEntity
     {
+
     }
 }
