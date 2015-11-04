@@ -9,8 +9,8 @@ namespace DictatorRTS
     /// </summary>
     public class Client : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public GraphicsDeviceManager graphics;
+        public SpriteBatch spriteBatch;
 
         public Client()
         {
@@ -30,7 +30,7 @@ namespace DictatorRTS
 
             base.Initialize();
         }
-
+        
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
