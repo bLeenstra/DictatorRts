@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -14,6 +14,8 @@
     <MonoGamePlatform>WindowsGL</MonoGamePlatform>
     <MonoGameContentBuilderExe>
     </MonoGameContentBuilderExe>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -24,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -33,18 +36,43 @@
     <DefineConstants>TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="Entities\BaseEffect.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\BaseTerrain.cs" />
+    <Compile Include="Entities\Effectables %28Not sure how to handle this%29\Beef.cs" />
+    <Compile Include="Entities\Effectables %28Not sure how to handle this%29\Carrot.cs" />
+    <Compile Include="Entities\Effectables %28Not sure how to handle this%29\Egg.cs" />
+    <Compile Include="Entities\Effectables %28Not sure how to handle this%29\Fish.cs" />
+    <Compile Include="Entities\Effectables %28Not sure how to handle this%29\FizzyDrink.cs" />
+    <Compile Include="Entities\Effectables %28Not sure how to handle this%29\RoastChicken.cs" />
+    <Compile Include="Entities\Effectables %28Not sure how to handle this%29\Water.cs" />
+    <Compile Include="Entities\Misc\RandomGenerator.cs" />
+    <Compile Include="Entities\Misc\StatisticalGenerator.cs" />
+    <Compile Include="Entities\Structures\AsphaltRoad.cs" />
+    <Compile Include="Entities\Structures\DirtRoad.cs" />
+    <Compile Include="Entities\Structures\GravelRoad.cs" />
+    <Compile Include="Entities\Structures\House.cs" />
+    <Compile Include="Entities\Structures\LogBridge.cs" />
+    <Compile Include="Entities\Structures\Skyscraper.cs" />
+    <Compile Include="Entities\Structures\SteelBridge.cs" />
+    <Compile Include="Entities\Structures\SwayBridge.cs" />
     <Compile Include="Entities\Terrain\Dirt.cs" />
+    <Compile Include="Entities\Terrain\Fog.cs" />
+    <Compile Include="Entities\Terrain\Gravel.cs" />
     <Compile Include="Entities\Terrain\Sand.cs" />
+    <Compile Include="Entities\Terrain\TerrainChunk.cs" />
+    <Compile Include="Entities\Misc\TerrainGenerator.cs" />
+    <Compile Include="Entities\Terrain\TerrainHandler.cs" />
     <Compile Include="Entities\Terrain\Water.cs" />
     <Compile Include="Entities\Terrain\Rock.cs" />
+    <Compile Include="Interfaces\IBuild.cs" />
     <Compile Include="Interfaces\IFood.cs" />
     <Compile Include="Entities\LifeForms\Animal.cs" />
     <Compile Include="Entities\LifeForms\Human.cs" />
@@ -79,6 +107,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Content\kootenay.ttf" />
   </ItemGroup>
   <ItemGroup>
