@@ -73,7 +73,6 @@
     <Compile Include="Entities\Terrain\Fog.cs" />
     <Compile Include="Entities\Terrain\Gravel.cs" />
     <Compile Include="Entities\Terrain\Sand.cs" />
-    <Compile Include="Entities\Terrain\TerrainChunk.cs" />
     <Compile Include="Entities\Misc\TerrainGenerator.cs" />
     <Compile Include="Entities\Terrain\TerrainHandler.cs" />
     <Compile Include="Entities\Terrain\Water.cs" />
@@ -114,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Content\kootenay.ttf" />
   </ItemGroup>
   <ItemGroup>
