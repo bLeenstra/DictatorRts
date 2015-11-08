@@ -13,15 +13,22 @@ namespace DictatorRTS.LifeCycle
 
         public override string ToString()
         {
-            return string.Format("Pop: {0}\nAvg Age: {1}\nMax Age: {2}\nYear: {3}\nDay: {4}\nBirths: {5}\nDeaths: {6}\r", People.Count, age == 0 || People.Count == 0 ? 0 : age / People.Count, maxAge, Years, days, births, deaths);
+            return string.Format("Pop: {0}\nAvg Age: {1}\nMax Age: {2}\nYear: {3}\nDay: {4}\nBirths: {5}\nDeaths: {6}\nTax Rate: {7}%\nMoney: {8:c2}\nCentre Link: {9}\r", People.Count, age == 0 || People.Count == 0 ? 0 : age / People.Count, maxAge, Years, days, births, deaths, Tax, Money, WePayForPoor);
         }
 
-        public InteractionPlane(int _population)
+        public void Kill(int i)
+        {
+            People[i].IsAlive = false;
+            People.RemoveAt(i);
+            deaths++;
+        }
+
+        public InteractionPlane(int _population, int startingAgeMin = 0, int startingAgeMax = 80)
         {
             for (int i = 0; i < _population; i++)
             {
                 People.Add(new Person(_random));
-                People.LastOrDefault().age = _random.Next(0, 80);
+                People.LastOrDefault().age = _random.Next(startingAgeMin, startingAgeMax);
             }
         }
 
@@ -32,6 +39,9 @@ namespace DictatorRTS.LifeCycle
         int days = 0;
         int births = 0;
         int deaths = 0;
+        public decimal Tax = 10m;
+        public decimal Money = 0m;
+        public bool WePayForPoor = true;
 
         public void Interact()
         {
@@ -58,52 +68,81 @@ namespace DictatorRTS.LifeCycle
                                 continue;
                             }
                         }
-
-                        if (People[m].gender == Person.Gender.Female && People[m].age <= 50)
+                        int g = People[m].gender == Person.Gender.Female && People[m].age <= 50 ?
+                            m : People[f].gender == Person.Gender.Female && People[f].age <= 50 ? 
+                            f : -1;
+                        if(g > 0)
                         {
-                            if (_random.Next(0, 50 - People[m].age) == 1)
-                            {
-                                continue;
-                            }                            
-                        }else if(People[f].gender == Person.Gender.Female && People[f].age <= 50)
-                        {
-                            if (_random.Next(0, 50 - People[f].age) == 1)
+                            if (_random.Next(0, 50 - People[g].age) == 1)
                             {
                                 continue;
                             }
+                            this.People.Add(new Person(_random, People[m], People[f]));
+                            births++;
                         }
-                        else
-                        {
-                            continue;
-                        }
-                        this.People.Add(new Person(_random, People[m], People[f]));
-                        births++;
                     }
                 }
             }
             cycle++;
             days++;
             if (cycle > 365)
-            {
+            {                
                 age = 0;
                 maxAge = 0;
+
                 for (int i = People.Count - 1; i >= 0; i--)
                 {
-                    if (People[i].age++ > 80)
+                    if (People[i].age++ > Person.DeathAge || (_random.Next(0, 100 - People[i].age) == 1))
                     {
-                        People.RemoveAt(i);
-                        deaths++;
+                        Kill(i);
                     }
                     else
                     {
-                        if (_random.Next(0, 100 - People[i].age) == 1)
+                        age += People[i].age;
+
+                        // we have lived another year.
+
+                        if (People[i].age >= Person.AgeWork)
                         {
-                            People.RemoveAt(i);
-                            deaths++;
-                            continue;
+                            if (People[i].age < Person.RetirementAge)
+                            {
+                                if (People[i].WageIncome == 0m)
+                                {
+                                    People[i].WageIncome = _random.Next(50000, 100000);
+                                }
+                                else
+                                {
+                                    People[i].WageIncome += People[i].WageIncome * 0.025m;
+                                }
+
+                                decimal totalTax = People[i].WageIncome * (Tax == 0m ? 0m : (Tax / 100m));
+
+                                Money += totalTax;
+
+                                People[i].money += People[i].WageIncome - totalTax;
+                            }
+
+                            if (People[i].money > Person.LivingCostPerYear)
+                            {
+                                People[i].money -= Person.LivingCostPerYear;
+                            }
+                            else
+                            {
+                                if (WePayForPoor)
+                                {
+                                    decimal AmountToPay = Person.LivingCostPerYear - People[i].money;
+
+                                    Money -= AmountToPay;
+
+                                    People[i].money = 0;
+                                }
+                                else
+                                {
+                                    Kill(i);
+                                }
+                            }
                         }
 
-                        age += People[i].age;
                         if (People[i].age > maxAge)
                         {
                             maxAge = People[i].age;

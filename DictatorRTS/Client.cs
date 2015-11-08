@@ -14,8 +14,7 @@ namespace DictatorRTS
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
-        public InteractionPlane interaction = new InteractionPlane(1000);
-        
+        public InteractionPlane interaction = new InteractionPlane(100, 0, 0);
 
         public GraphicHandler graphicHandler;
 
@@ -58,6 +57,8 @@ namespace DictatorRTS
         {
             // TODO: Unload any non ContentManager content here
         }
+        KeyboardState Prev;
+        KeyboardState Curr;
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -68,6 +69,21 @@ namespace DictatorRTS
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            Curr = Keyboard.GetState();
+
+            if (Curr.IsKeyDown(Keys.Up) && Prev.IsKeyUp(Keys.Up) && interaction.Tax < 100m)
+            {
+                interaction.Tax += 1m;
+            }
+            else if (Curr.IsKeyDown(Keys.Down) && Prev.IsKeyUp(Keys.Down) && interaction.Tax > 0m)
+            {
+                interaction.Tax -= 1m;
+            }
+            if (Curr.IsKeyDown(Keys.Space) && Prev.IsKeyUp(Keys.Space))
+            {
+                interaction.WePayForPoor = !interaction.WePayForPoor;
+            }
+            Prev = Curr;
 
             interaction.Interact();
 

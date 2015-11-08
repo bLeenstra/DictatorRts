@@ -8,11 +8,16 @@ namespace DictatorRTS.LifeCycle
 {
     public class Person
     {
-        public byte[] innerCode = new byte[8];
+        public byte[] innerCode = new byte[4];
         public Hashtable Relation = new Hashtable();
         private Random _r;
         public int age = 0;
         public Gender gender;
+        public bool IsAlive = false;
+
+        public decimal WageIncome = 0m;
+
+        public decimal money = 0;
 
         public Person P1, P2;
         public State CurrentState = State.None;
@@ -21,6 +26,11 @@ namespace DictatorRTS.LifeCycle
         public static int MateState = -1;
 
         public static int MateAgeLimit = 18;
+        public static int AgeWork = 15;
+        public static int RetirementAge = 65;
+        public static int DeathAge = 80;
+
+        public static int LivingCostPerYear = 15000;
 
         public enum Gender
         {
