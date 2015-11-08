@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace DictatorRTS.LifeCycle
@@ -10,7 +11,7 @@ namespace DictatorRTS.LifeCycle
     {
         public List<Person> People = new List<Person>();
         public Random _random = new Random();
-
+        
         public override string ToString()
         {
             return string.Format("Pop: {0}\nAvg Age: {1}\nMax Age: {2}\nYear: {3}\nDay: {4}\nBirths: {5}\nDeaths: {6}\nTax Rate: {7}%\nMoney: {8:c2}\nCentre Link: {9}\r", People.Count, age == 0 || People.Count == 0 ? 0 : age / People.Count, maxAge, Years, days, births, deaths, Tax, Money, WePayForPoor);
@@ -29,7 +30,7 @@ namespace DictatorRTS.LifeCycle
             {
                 People.Add(new Person(_random));
                 People.LastOrDefault().age = _random.Next(startingAgeMin, startingAgeMax);
-            }
+            }                     
         }
 
         int age = 0;
@@ -39,10 +40,15 @@ namespace DictatorRTS.LifeCycle
         int days = 0;
         int births = 0;
         int deaths = 0;
+        int LastPOP = 0;
+        public decimal PopGrowthPercetange = 0;
         public decimal Tax = 10m;
         public decimal Money = 0m;
         public bool WePayForPoor = true;
 
+        /// <summary>
+        /// need to make it so other people can't take over relationships.
+        /// </summary>
         public void Interact()
         {
             for (int f = 0; f < People.Count; f++)
@@ -89,6 +95,8 @@ namespace DictatorRTS.LifeCycle
             {                
                 age = 0;
                 maxAge = 0;
+
+                
 
                 for (int i = People.Count - 1; i >= 0; i--)
                 {
@@ -147,8 +155,17 @@ namespace DictatorRTS.LifeCycle
                         {
                             maxAge = People[i].age;
                         }
-                    }
+                    }                    
                 }
+
+                if (LastPOP != 0 && People.Count != 0)
+                {
+                    //Original Number - New Number
+                    PopGrowthPercetange = -(((LastPOP - People.Count) / (decimal)LastPOP) * 100.0m);
+                }
+
+                LastPOP = People.Count;
+
                 cycle = 0;
                 Years++;
             }            

@@ -103,7 +103,8 @@ namespace DictatorRTS
             // TODO: Add your drawing code here
             graphicHandler.
                 Begin().
-                    DrawString(interaction.ToString(), 20, 20, Color.Black).
+                DrawString(string.Format("{0}%", Math.Round( interaction.PopGrowthPercetange, 2)), 20, 20, interaction.PopGrowthPercetange == 0m ? Color.Black : interaction.PopGrowthPercetange > 0m ? Color.Green : Color.Red).
+                    DrawString(interaction.ToString(), 20, 40, Color.Black).
                 End();            
 
             base.Draw(gameTime);
