@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictatorRTS", "DictatorRTS.csproj", "{4031B762-73EB-441A-A46F-E83D12804FEC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictatorRTSUnitTest", "..\DictatorRTSUnitTest\DictatorRTSUnitTest.csproj", "{B30AABF5-CE4A-4C9A-BB38-2AF27D50DBB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,16 +25,6 @@ Global
 		{4031B762-73EB-441A-A46F-E83D12804FEC}.Release|Mixed Platforms.Build.0 = Release|x86
 		{4031B762-73EB-441A-A46F-E83D12804FEC}.Release|x86.ActiveCfg = Release|x86
 		{4031B762-73EB-441A-A46F-E83D12804FEC}.Release|x86.Build.0 = Release|x86
-		{B30AABF5-CE4A-4C9A-BB38-2AF27D50DBB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B30AABF5-CE4A-4C9A-BB38-2AF27D50DBB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B30AABF5-CE4A-4C9A-BB38-2AF27D50DBB6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{B30AABF5-CE4A-4C9A-BB38-2AF27D50DBB6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{B30AABF5-CE4A-4C9A-BB38-2AF27D50DBB6}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B30AABF5-CE4A-4C9A-BB38-2AF27D50DBB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B30AABF5-CE4A-4C9A-BB38-2AF27D50DBB6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B30AABF5-CE4A-4C9A-BB38-2AF27D50DBB6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{B30AABF5-CE4A-4C9A-BB38-2AF27D50DBB6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{B30AABF5-CE4A-4C9A-BB38-2AF27D50DBB6}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

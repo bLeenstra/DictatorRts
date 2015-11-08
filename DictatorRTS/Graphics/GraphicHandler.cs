@@ -96,25 +96,29 @@ namespace DictatorRTS.Graphics
             source.Dispose();            
         }
 
-        public void SetActiveTexture(Texture2D source)
+        public GraphicHandler SetActiveTexture(Texture2D source)
         {
             this.ActiveTexture = source;
+            return this;
         }
 
-        public void DrawActiveTexture(int x, int y, int width, int height)
+        public GraphicHandler DrawActiveTexture(int x, int y, int width, int height)
         {
             this.spriteBatch.Draw(this.ActiveTexture, new Rectangle((int)(x * xScale), (int)(y * yscale), (int)(width * xScale), (int)(height * yscale)), Color.White);
+            return this;
         }
-        public void DrawTexture(Texture2D source, int x, int y, int width, int height)
+        public GraphicHandler DrawTexture(Texture2D source, int x, int y, int width, int height)
         {
             this.spriteBatch.Draw(source, new Rectangle((int)(x * xScale), (int)(y * yscale), (int)(width * xScale), (int)(height * yscale)), Color.White);
+            return this;
         }
 
-        public void DrawActiveTexture(int x, int y, int width, int height, float rotation, OriginLocation Origin = OriginLocation.Middle)
+        public GraphicHandler DrawActiveTexture(int x, int y, int width, int height, float rotation, OriginLocation Origin = OriginLocation.Middle)
         {
             DrawTexture(this.ActiveTexture, x, y, width, height, rotation, Origin);
+            return this;
         }
-        public void DrawTexture(Texture2D source, int x, int y, int width, int height, float rotation, OriginLocation Origin = OriginLocation.Middle)
+        public GraphicHandler DrawTexture(Texture2D source, int x, int y, int width, int height, float rotation, OriginLocation Origin = OriginLocation.Middle)
         {
             switch (Origin)
             {
@@ -147,22 +151,26 @@ namespace DictatorRTS.Graphics
                     break;
                 default:
                     break;
-            }            
+            }
+            return this;
         }
 
-        public void Begin()
+        public GraphicHandler Begin()
         {
             this.spriteBatch.Begin();
+            return this;
         }
 
-        public void End()
+        public GraphicHandler End()
         {
             this.spriteBatch.End();
+            return this;
         }
 
-        public void DrawString(string source, int x, int y, Color color)
+        public GraphicHandler DrawString(string source, int x, int y, Color color)
         {
             this.spriteBatch.DrawString(this.Font, source, new Vector2((int)(x * xScale), (int)(y * yscale)), color, 0, Vector2.Zero, new Vector2(xScale, yscale), SpriteEffects.None, 0.0f);
+            return this;
         }
     }
 }
