@@ -71,17 +71,17 @@ namespace DictatorRTS
                 Exit();
             Curr = Keyboard.GetState();
 
-            if (Curr.IsKeyDown(Keys.Up) && Prev.IsKeyUp(Keys.Up) && interaction.Tax < 100m)
+            if (Curr.IsKeyDown(Keys.Up) && Prev.IsKeyUp(Keys.Up) && interaction.TaxPercent < 100m)
             {
-                interaction.Tax += 1m;
+                interaction.TaxPercent += 1m;
             }
-            else if (Curr.IsKeyDown(Keys.Down) && Prev.IsKeyUp(Keys.Down) && interaction.Tax > 0m)
+            else if (Curr.IsKeyDown(Keys.Down) && Prev.IsKeyUp(Keys.Down) && interaction.TaxPercent > 0m)
             {
-                interaction.Tax -= 1m;
+                interaction.TaxPercent -= 1m;
             }
             if (Curr.IsKeyDown(Keys.Space) && Prev.IsKeyUp(Keys.Space))
             {
-                interaction.WePayForPoor = !interaction.WePayForPoor;
+                interaction.CentreLinkEnabled = !interaction.CentreLinkEnabled;
             }
             Prev = Curr;
 

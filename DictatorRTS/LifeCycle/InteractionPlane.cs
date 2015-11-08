@@ -10,50 +10,57 @@ namespace DictatorRTS.LifeCycle
     public class InteractionPlane
     {
         public List<Person> People = new List<Person>();
-        public Random _random = new Random();
-        
+        public Random _Random = new Random();
+        public decimal PopGrowthPercetange = 0;
+        public decimal TaxPercent = 10m;
+        public decimal Capital = 0m;
+        public bool CentreLinkEnabled = true;
+
+        int _age = 0;
+        int _maxAge = 0;
+        int _cycle = 0;
+        int _years = 0;
+        int _days = 0;
+        int _births = 0;
+        int _deaths = 0;
+        int _PreviousPopulation = 0;
+
         public override string ToString()
         {
-            return string.Format("Pop: {0}\nAvg Age: {1}\nMax Age: {2}\nYear: {3}\nDay: {4}\nBirths: {5}\nDeaths: {6}\nTax Rate: {7}%\nMoney: {8:c2}\nCentre Link: {9}\r", People.Count, age == 0 || People.Count == 0 ? 0 : age / People.Count, maxAge, Years, days, births, deaths, Tax, Money, WePayForPoor);
+            return string.Format("Pop: {0}\nAvg Age: {1}\nMax Age: {2}\nYear: {3}\nDay: {4}\nBirths: {5}\nDeaths: {6}\nTax Rate: {7}%\nMoney: {8:c2}\nCentre Link: {9}\r", People.Count, _age == 0 || People.Count == 0 ? 0 : _age / People.Count, _maxAge, _years, _days, _births, _deaths, TaxPercent, Capital, CentreLinkEnabled);
         }
 
         public void Kill(int i)
         {
             People[i].IsAlive = false;
             People.RemoveAt(i);
-            deaths++;
+            _deaths++;
         }
 
+        /// <summary>
+        /// starting age is in years.
+        /// </summary>
+        /// <param name="_population"></param>
+        /// <param name="startingAgeMin"></param>
+        /// <param name="startingAgeMax"></param>
         public InteractionPlane(int _population, int startingAgeMin = 0, int startingAgeMax = 80)
         {
             for (int i = 0; i < _population; i++)
             {
-                People.Add(new Person(_random));
-                People.LastOrDefault().age = _random.Next(startingAgeMin, startingAgeMax);
+                People.Add(new Person(_Random));
+                People.LastOrDefault().age = _Random.Next(startingAgeMin, startingAgeMax);
             }                     
         }
 
-        int age = 0;
-        int maxAge = 0;
-        int cycle = 0;
-        int Years = 0;
-        int days = 0;
-        int births = 0;
-        int deaths = 0;
-        int LastPOP = 0;
-        public decimal PopGrowthPercetange = 0;
-        public decimal Tax = 10m;
-        public decimal Money = 0m;
-        public bool WePayForPoor = true;
-
         /// <summary>
-        /// need to make it so other people can't take over relationships.
+        /// TODO: need to make it so other people can't take over relationships.
+        /// Needs to be cleaned also structured.
         /// </summary>
         public void Interact()
         {
             for (int f = 0; f < People.Count; f++)
             {
-                int m = _random.Next(0, People.Count);
+                int m = _Random.Next(0, People.Count);
 
                 if (People[f] != People[m])
                 {
@@ -69,7 +76,7 @@ namespace DictatorRTS.LifeCycle
                             continue;
                         if (People[m].IsRelation(People[f], ref gen))
                         {
-                            if (_random.Next(0, gen) == 1)
+                            if (_Random.Next(0, gen) == 1)
                             {
                                 continue;
                             }
@@ -79,34 +86,32 @@ namespace DictatorRTS.LifeCycle
                             f : -1;
                         if(g > 0)
                         {
-                            if (_random.Next(0, 50 - People[g].age) == 1)
+                            if (_Random.Next(0, 50 - People[g].age) == 1)
                             {
                                 continue;
                             }
-                            this.People.Add(new Person(_random, People[m], People[f]));
-                            births++;
+                            this.People.Add(new Person(_Random, People[m], People[f]));
+                            _births++;
                         }
                     }
                 }
             }
-            cycle++;
-            days++;
-            if (cycle > 365)
+            _cycle++;
+            _days++;
+            if (_cycle > 365) // Year Cycle.
             {                
-                age = 0;
-                maxAge = 0;
-
+                _age = 0;
+                _maxAge = 0;
                 
-
                 for (int i = People.Count - 1; i >= 0; i--)
                 {
-                    if (People[i].age++ > Person.DeathAge || (_random.Next(0, 100 - People[i].age) == 1))
+                    if (People[i].age++ > Person.DeathAge || (_Random.Next(0, 100 - People[i].age) == 1))
                     {
                         Kill(i);
                     }
                     else
                     {
-                        age += People[i].age;
+                        _age += People[i].age;
 
                         // we have lived another year.
 
@@ -116,16 +121,16 @@ namespace DictatorRTS.LifeCycle
                             {
                                 if (People[i].WageIncome == 0m)
                                 {
-                                    People[i].WageIncome = _random.Next(50000, 100000);
+                                    People[i].WageIncome = _Random.Next(50000, 100000);
                                 }
                                 else
                                 {
-                                    People[i].WageIncome += People[i].WageIncome * 0.025m;
+                                    People[i].WageIncome += People[i].WageIncome * 0.025m; // Wage Increase Per year. needs to be controled. depending on the market.
                                 }
 
-                                decimal totalTax = People[i].WageIncome * (Tax == 0m ? 0m : (Tax / 100m));
+                                decimal totalTax = People[i].WageIncome * (TaxPercent == 0m ? 0m : (TaxPercent / 100m));
 
-                                Money += totalTax;
+                                Capital += totalTax;
 
                                 People[i].money += People[i].WageIncome - totalTax;
                             }
@@ -136,11 +141,11 @@ namespace DictatorRTS.LifeCycle
                             }
                             else
                             {
-                                if (WePayForPoor)
+                                if (CentreLinkEnabled)
                                 {
                                     decimal AmountToPay = Person.LivingCostPerYear - People[i].money;
 
-                                    Money -= AmountToPay;
+                                    Capital -= AmountToPay;
 
                                     People[i].money = 0;
                                 }
@@ -151,23 +156,24 @@ namespace DictatorRTS.LifeCycle
                             }
                         }
 
-                        if (People[i].age > maxAge)
+                        if (People[i].age > _maxAge)
                         {
-                            maxAge = People[i].age;
+                            _maxAge = People[i].age;
                         }
                     }                    
                 }
 
-                if (LastPOP != 0 && People.Count != 0)
+                if (_PreviousPopulation != 0 && People.Count != 0)
                 {
                     //Original Number - New Number
-                    PopGrowthPercetange = -(((LastPOP - People.Count) / (decimal)LastPOP) * 100.0m);
+                    PopGrowthPercetange = ((People.Count - _PreviousPopulation) / (decimal)_PreviousPopulation) * 100.0m;
+                    GC.Collect(0);
                 }
 
-                LastPOP = People.Count;
+                _PreviousPopulation = People.Count;
 
-                cycle = 0;
-                Years++;
+                _cycle = 0;
+                _years++;
             }            
         }
     }
