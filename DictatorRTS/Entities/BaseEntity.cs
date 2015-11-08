@@ -17,11 +17,11 @@ namespace DictatorRTS.Entities
             
         }
         public BaseEntity(decimal health) {
-            _maxHealth = _currentHealth = health;
+            this._maxHealth = health;
+            this._currentHealth = health;
         }
 
-        public decimal MaxHealth
-        {
+        public decimal MaxHealth {
             get { return _maxHealth; }   
         }
 
