@@ -10,7 +10,8 @@ namespace DictatorRTSUnitTest
     {
         static void Main(string[] args)
         {
-
+            var _Interaction = new InteractionPlane(2);
+            _Interaction.Interact();
         }
     }
 }

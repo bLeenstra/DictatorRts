@@ -1,6 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DictatorRTS.Graphics;
+using DictatorRTS.LifeCycle;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace DictatorRTS
 {
@@ -11,6 +14,10 @@ namespace DictatorRTS
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
+        public InteractionPlane interaction = new InteractionPlane(1000);
+        
+
+        public GraphicHandler graphicHandler;
 
         public Client()
         {
@@ -26,8 +33,7 @@ namespace DictatorRTS
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            // TODO: Add your initialization logic here            
             base.Initialize();
         }
         
@@ -39,7 +45,8 @@ namespace DictatorRTS
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            graphicHandler = new GraphicHandler(this); // needs to be set after sprite batch.
+            this.TargetElapsedTime = TimeSpan.FromSeconds(1.0f / 300.0f);
             // TODO: use this.Content to load your game content here
         }
 
@@ -62,6 +69,8 @@ namespace DictatorRTS
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            interaction.Interact();
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -76,6 +85,10 @@ namespace DictatorRTS
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            graphicHandler.
+                Begin().
+                    DrawString(interaction.ToString(), 20, 20, Color.Black).
+                End();            
 
             base.Draw(gameTime);
         }

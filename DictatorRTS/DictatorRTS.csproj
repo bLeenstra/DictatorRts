@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{4031B762-73EB-441A-A46F-E83D12804FEC}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DictatorRTS</RootNamespace>
     <AssemblyName>DictatorRTS</AssemblyName>
@@ -94,6 +94,8 @@
     <Compile Include="Entities\Structures\Road.cs" />
     <Compile Include="Entities\Structures\Structure.cs" />
     <Compile Include="Graphics\GraphicHandler.cs" />
+    <Compile Include="LifeCycle\InteractionPlane.cs" />
+    <Compile Include="LifeCycle\Person.cs" />
     <Compile Include="Path\PathHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
