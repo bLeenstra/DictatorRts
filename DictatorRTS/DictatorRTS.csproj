@@ -62,6 +62,7 @@
     <Compile Include="Entities\LifeForms\Cow.cs" />
     <Compile Include="Entities\LifeForms\Dog.cs" />
     <Compile Include="Entities\LifeForms\Insects.cs" />
+    <Compile Include="Entities\LifeForms\Theria.cs" />
     <Compile Include="Entities\Misc\RandomGenerator.cs" />
     <Compile Include="Entities\Misc\StatisticalGenerator.cs" />
     <Compile Include="Entities\Structures\AsphaltRoad.cs" />
@@ -80,10 +81,13 @@
     <Compile Include="Entities\Terrain\TerrainHandler.cs" />
     <Compile Include="Entities\Terrain\Water.cs" />
     <Compile Include="Entities\Terrain\Rock.cs" />
+    <Compile Include="GlobalFunctions\DateFunctions.cs" />
+    <Compile Include="GlobalFunctions\EnumFunctions.cs" />
+    <Compile Include="GlobalFunctions\IntegerFunctions.cs" />
     <Compile Include="Interfaces\IBuild.cs" />
     <Compile Include="Interfaces\IFood.cs" />
-    <Compile Include="Entities\LifeForms\Animal.cs" />
-    <Compile Include="Entities\LifeForms\Human.cs" />
+    <Compile Include="Entities\LifeForms\Metazoa.cs" />
+    <Compile Include="Entities\LifeForms\HomoSapien.cs" />
     <Compile Include="Entities\LifeForms\LifeForm.cs" />
     <Compile Include="Entities\LifeForms\Eukaryotes.cs" />
     <Compile Include="Entities\LifeForms\Plants.cs" />

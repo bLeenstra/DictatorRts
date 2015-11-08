@@ -6,10 +6,25 @@ using System.Text;
 namespace DictatorRTS.Entities.LifeForms
 {
     /// <summary>
-    /// http://lmgtfy.com/?q=Eukaryotes    
+    ///     Organisms with nucleated cells
+    ///     https://en.wikipedia.org/wiki/Eukaryote
     /// </summary>
-    public class Eukaryotes : LifeForm
-    {
+    public class Eukaryotes : LifeForm {
 
+        internal Eukaryotes() {
+
+        }
+
+        internal Eukaryotes(decimal health) : base(health) {
+
+        }
+
+        internal Eukaryotes(DateTime dateofBirth) : base(dateofBirth) {
+
+        }
+
+        internal Eukaryotes(DateTime dateofBirth, decimal health) : base(dateofBirth, health) {
+
+        }
     }
 }
