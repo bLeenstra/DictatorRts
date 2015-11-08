@@ -14,7 +14,7 @@ namespace DictatorRTS
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
-        public InteractionPlane interaction = new InteractionPlane(100, 0, 0);
+        public InteractionPlane interaction = new InteractionPlane(10, 0, 30);
 
         public GraphicHandler graphicHandler;
 
@@ -45,7 +45,7 @@ namespace DictatorRTS
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             graphicHandler = new GraphicHandler(this); // needs to be set after sprite batch.
-            this.TargetElapsedTime = TimeSpan.FromSeconds(1.0f / 300.0f);
+            this.TargetElapsedTime = TimeSpan.FromSeconds(1.0f / 10.0f);
             // TODO: use this.Content to load your game content here
         }
 

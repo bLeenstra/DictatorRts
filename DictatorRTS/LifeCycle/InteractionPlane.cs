@@ -121,7 +121,7 @@ namespace DictatorRTS.LifeCycle
                             {
                                 if (People[i].WageIncome == 0m)
                                 {
-                                    People[i].WageIncome = _Random.Next(50000, 100000);
+                                    People[i].WageIncome = _Random.Next(Person.LowIncomePerYear, Person.HowIncomePerYear);
                                 }
                                 else
                                 {

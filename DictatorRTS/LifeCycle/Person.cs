@@ -30,7 +30,10 @@ namespace DictatorRTS.LifeCycle
         public static int RetirementAge = 65;
         public static int DeathAge = 80;
 
-        public static int LivingCostPerYear = 15000;
+        public static int LivingCostPerYear = 30000;
+
+        public static int LowIncomePerYear = 43000;
+        public static int HowIncomePerYear = 79000;
 
         public enum Gender
         {
